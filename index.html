@@ -33,6 +33,19 @@
         })
     }
     
-    promiseCallApi()
+    async function awaitApi(){
+        try{
+            let response = await axios.get('https://reqres.in/api/users/5');
+            
+            data.src = response.data.data.avatar
+            document.getElementById('name').innerText = response.data.data.first_name 
+            + " " + response.data.data.last_name
+            document.getElementById('email').innerText = response.data.data.email
+        }catch(error){
+            console.log('error ==>',err);
+        }
+    }
+    //promiseCallApi()
+    awaitApi()
 </script>
 </html>
