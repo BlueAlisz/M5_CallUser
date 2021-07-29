@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .imgs{
+        border-radius: 100%;
+    }
+</style>
+<body>
+
+    <img class ="imgs">
+    <h1 id="name"></h1>
+    <p id="email"></p>
+    
+</body>
+<script>
+    let data = document.querySelector('.imgs');
+
+    function promiseCallApi(){
+        axios.get('https://reqres.in/api/users/5').then(res=>{
+            data.src = res.data.data.avatar
+            document.getElementById('name').innerText = res.data.data.first_name 
+            + " " + res.data.data.last_name
+            document.getElementById('email').innerText = res.data.data.email
+        }).catch(err =>{
+            console.log('err',err)
+        })
+    }
+    
+    promiseCallApi()
+</script>
+</html>
